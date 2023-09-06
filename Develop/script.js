@@ -38,69 +38,81 @@ while(lowercase==false&&uppercase==false&&number==false&&number==false&&specialc
 }
 
 var passwordtogenerate="";  //establishing the variable.  Instead of testing later I'll wrap in a while statement
-var alpha = "abcdefghijklmnopqrstuvwxyz";  //I'll randomize characters in
+var alpha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";  //I'll randomize characters in
 var numerical = "1234567890"; //I'll randomize numbers in
 var special = "/.,';][)(!@#$%^&*"; //I'll randomize specials in
 var allcharacters = alpha + numerical + special;
 
 //generate the password
-while(passwordtogenerate==""&&!lowerconstraint&&!upperconstraint&&!numberconstraint&&!specialconstraint) { //validation of testing below
+ var conditionsMet=false;
+
+while(conditionsMet==false) { //validation of testing below
+  console.log("loop");
+  var lowerconstraint=false, upperconstraint=false, numberconstraint=false, specialconstraint=false; //create constraints
+  //resets on loop as new password is generated
   for(var i=0; i <= length; i++){ //for each in length
-    var randomizednumber = Math.random(allcharacters.length); //Gets a random number based on total character length
-    console.log(randomizednumber);
+    var randomizednumber = Math.floor(Math.random(allcharacters.length) * allcharacters.length); //Gets a random number based on total character length
     passwordtogenerate += allcharacters.substring(randomizednumber,randomizednumber+1); //grab a random character
   }
   //validation if's
-  var lowerconstraint=false, upperconstraint=false, numberconstraint=false, specialconstraint=false; //create constraints
-  //resetting validated if while loop continues
-  if(lowercase) {
+  
+  if(lowercase==true) {
     for(var o=0; o<passwordtogenerate.length; o++){
-      if(passwordtogenerate.substring(o)==passwordtogenerate.substring(o).toLowerCase()) {
+      if(passwordtogenerate.substring(o,o+1)==passwordtogenerate.substring(o,o+1).toLowerCase()) {
+        console.log(passwordtogenerate.substring(o,o+1));
         lowerconstraint=true;
-        break; //we break to lower checking further as we've passed
       }
     }
   } else {
     lowerconstraint=true;  //we've technically passed the false requirement by default
   }
 
-  if(uppercase) {
+  if(uppercase==true) {
     for(var o=0; o<passwordtogenerate.length; o++){
-      if(passwordtogenerate.substring(o)==passwordtogenerate.substring(o)) {
+      console.log(passwordtogenerate.substring(o,o+1));
+      if(passwordtogenerate.substring(o,o+1).match(/^[A-Z]*$/)) {
+        console.log("uppercase found " +  passwordtogenerate.substring(o,o+1))
         upperconstraint=true;
-        break; //we break to lower checking further as we've passed
       }
     }
   } else {
     upperconstraint=true;  //we've technically passed the false requirement by default
   }
 
-  if(number) {
+  if(number==true) {
     for(var o=0; o<passwordtogenerate.length; o++){
-      if(typeof passwordtogenerate.substring(o) == number) {
+      if(typeof passwordtogenerate.substring(o,o+1) == number) {
         numberconstraint=true;
-        break; //we break to lower checking further as we've passed
       }
     }
   } else {
     numberconstraint=true;  //we've technically passed the false requirement by default
   }
 
-  if(specialcharacter) {
+  if(specialcharacter==true) {
     for(var o=0; o<passwordtogenerate.length; o++){
       for(var s=0; s<special.length; s++) {
-      if(passwordtogenerate.substring(o) == special.substring(s)) {
+      if(passwordtogenerate.substring(o,o+1) == special.substring(s,s+1)) {
         specialconstraint=true;
-        break; //we break to lower checking further as we've passed
       }
     }
   }
 } else {
   specialconstraint=true;  //we've technically passed the false requirement by default
 }
-
+console.log(lowerconstraint);
+console.log(upperconstraint);
+console.log(numberconstraint);
+console.log(specialconstraint);
+if(lowerconstraint==true&&upperconstraint==true&&numberconstraint==true&&specialconstraint==true) {
+  conditionsMet=true;
+  console.log(conditionsMet);
 }
-return passwordtogenerate;
+}
+
+if(lowerconstraint==true && upperconstraint==true && numberconstraint==true && specialconstraint==true) {
+  return passwordtogenerate;
+}
 }
 
 // Add event listener to generate button
