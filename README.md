@@ -4,9 +4,9 @@ This one follows AC explicitely instead of trying to do it all at once.  There's
 I'm sure this can be done easier.  As it stands I created a single function for replacing a specific string by index\
 but I think I could extract more of this into a few smaller functions so that the main code reads more like a book.\
 \
-Enjoy!
-
-
+Enjoy!\
+\
+Code is in the Develop folder, primarily in the script.js file
 
 
 
