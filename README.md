@@ -1,3 +1,20 @@
+# About this code
+A lot of this was done twice.  I did the initial code and then refactored it after I wasn't happy with the results.\
+This one follows AC explicitely instead of trying to do it all at once.  There's a little future proofing here, but\
+I'm sure this can be done easier.  As it stands I created a single function for replacing a specific string by index\
+but I think I could extract more of this into a few smaller functions so that the main code reads more like a book.\
+\
+Enjoy!
+
+
+
+
+
+
+
+
+
+
 # Password Generator Bootcamp Project 3
 ## User Story
 AS AN employee with access to sensitive data\
